@@ -19,11 +19,14 @@ try
     switch ($action)
     {
       case 'vue_accueil' :
-        accueil();
-        break;
+          accueil();
+          break;
       case 'vue_snows' :
           snows();
-        break;
+          break;
+      case 'vue_login' :
+          login();
+          break;
       default :
         throw new Exception("Action non valide");
     }

@@ -35,5 +35,11 @@ function snows()
 
 function login()
 {
-    require 'vue/vue_login.php';
+    if(!isset($_POST["username"]) && !isset($_POST["password"])){
+      require 'vue/vue_login.php';
+    }
+    if (isset($_POST["username"])) {
+      require 'modele/modele.php';
+      getLogin();
+    }
 }

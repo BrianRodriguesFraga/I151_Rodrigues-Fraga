@@ -41,3 +41,7 @@ function getSnows()
   $resultats = $connexion->query($requete);
   return $resultats;
 }
+function getLogin(){
+
+
+}

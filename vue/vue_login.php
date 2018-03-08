@@ -7,13 +7,17 @@
  */
 // tampon de flux stocké en mémoire
 ob_start();
+if (isset($_SESSION)) {
+    session_destroy();
+}
+
 $titre="RentASnow - Login";
 ?>
 
 <article>
   <header>
     <h2>Login</h2>
-      <form action="/controleur/controleur.php">
+      <form method="post" action="../controleur/controleur.php">
         <table class="table">
             <tr>
                 <td>Nom d'utilisateur :</td>

@@ -8,6 +8,7 @@
 // tampon de flux stocké en mémoire
 ob_start();
 if (isset($_SESSION)) {
+    $_SESSION = array();
     session_destroy();
 }
 
@@ -17,7 +18,7 @@ $titre="RentASnow - Login";
 <article>
   <header>
     <h2>Login</h2>
-      <form method="post" action="../controleur/controleur.php">
+      <form method='post' action=''>
         <table class="table">
             <tr>
                 <td>Nom d'utilisateur :</td>
@@ -26,13 +27,13 @@ $titre="RentASnow - Login";
             </tr>
             <tr>
                 <td>Mot de passe :</td>
-                <td><input type="password" name="password" value=""></td>
+                <td><input class="btn" type="password" name="password" value=""></td>
                 <td></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
-                <td><input type="submit" value="login"></td>
+                <td><input class="btn" type="submit" value="login"></td>
             </tr>
         </form>
     </table>

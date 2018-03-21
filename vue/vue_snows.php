@@ -4,8 +4,6 @@
  * User: Pascal.BENZONANA
  * Date: 12.05.2017
  * Time: 09:36
- * Updated : Nicolas.Glassey
- * Date : 14.02.2018
  */
 
 ob_start();
@@ -16,6 +14,9 @@ $titre = 'Rent A Snow - Nos snows';
 <article>
   <header>
     <h2>Nos snows</h2>
+      <?php if(isset($_POST['errormessage'])){
+          echo @$_POST['errormessage']."<br/><br/><br/>";
+      } ?>
     <table class="table textcolor">
       <tr>
       <?php
@@ -27,6 +28,9 @@ $titre = 'Rent A Snow - Nos snows';
           echo "<th>" . $entete['name'] . "</th>";
         }
       ?>
+      <?php if ((isset($_SESSION['login']))&&(@$_SESSION['typeUser'])=="Vendeur") : ?>
+        <th><a href="index.php?action=vue_add_snow"><img src="contenu/images/add.png"</a></th>
+      <?php endif; ?>
       </tr>
       <?php foreach ($resultats as $resultat) :?>
         <!-- Affichage des résultats de la BD -->
@@ -36,8 +40,19 @@ $titre = 'Rent A Snow - Nos snows';
           <td><?=$resultat['boots'];?></td>
           <td><?=$resultat['type'];?></td>
           <td><?=$resultat['disponibilite'];?></td>
+          <?php if ((isset($_SESSION['login']))&&(@$_SESSION['typeUser'])=="Vendeur") : ?>
+          <td><a href="index.php?action=vue_del_snow&ID=<?=$resultat['idsurf'];?>"><img src="contenu/images/delete.jpg"></a> -
+            <a href="index.php?action=vue_upd_snow&ID=<?=$resultat['idsurf'];?>"><img src="contenu/images/modif.png"></a>
+          </td>
+          <?php endif; ?>
+          <?php if ((isset($_SESSION['login']))&&(@$_SESSION['typeUser'])=="Client") : ?>
+            <td><a href="index.php?action=vue_del_snow&ID=<?=$resultat['idsurf'];?>"><img src="contenu/images/icone-panier.jpg"></a>
+            </td>
+          <?php endif; ?>
+
         </tr>
       <?php endforeach;?>
+
     </table>
   </header>
 </article>

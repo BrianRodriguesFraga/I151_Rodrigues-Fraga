@@ -4,8 +4,6 @@
  * User: Pascal.BENZONANA
  * Date: 08.05.2017
  * Time: 09:16
- * Updated : Nicolas.Glassey
- * Date : 14.02.2018
  */
 
 // tampon de flux stocké en mémoire

@@ -80,11 +80,13 @@
                 <?php else : ?>
                 <li><a href="index.php?action=vue_snows">Nos snows</a></li>
                 <?php endif; ?>
-                  <?php if(@$_GET['action']=="vue_login") :?>
-                      <li class="active"><a href="index.php?action=vue_snows">Login</a></li>
+                <li <?php if(@$_GET['action']== "vue_login") echo 'class="active"'; ?>>
+                  <a href="index.php?action=vue_login">
+                  <?php if (isset($_SESSION['login'])) :?>
+                    Logout</a>
                   <?php else : ?>
-                      <li><a href="index.php?action=vue_login">Login</a></li>
-                  <?php endif; ?>
+                    Login</a>
+                  <?php endif ?>
                 </li>
                 <li><a href="contact.php">Contact</a></li>
               </ul>

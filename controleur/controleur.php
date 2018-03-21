@@ -4,42 +4,53 @@
  * User: Pascal.BENZONANA
  * Date: 08.05.2017
  * Time: 09:10
- * Updated : Nicolas.Glassey
- * Date : 14.02.2018
  */
-
 
 require "modele/modele.php";
 
 // Affichage de la page de l'accueil
 function accueil()
 {
-  require "vue/vue_accueil.php";
+    require "vue/vue_accueil.php";
 }
 
 function erreur($e)
 {
-  $_SESSION['erreur']=$e;
-  require "vue/vue_erreur.php";
+    $_SESSION['erreur'] = $e;
+    require "vue/vue_erreur.php";
 }
 
 // ----------------- Fonctions en lien avec les snows ---------------------
 
 function snows()
 {
-  $resultats=getSnows(); // pour récupérer les données des snows dans la BD
-  require 'vue/vue_snows.php';
+    if ((isset($_POST['fID']))&&(isset($_POST['fMarque']))&&(isset($_POST['fBoots']))&&(isset($_POST['fType']))&&(isset($_POST['fDispo']))){
+        addSnowDB();
+        @$_POST['errormessage'] = "requête envoyé avec succès !";
+    }
+
+    $resultats = getSnows(); // pour récupérer les données des snows dans la BD
+    require 'vue/vue_snows.php';
 }
 
-// ----------------- Fonctions en lien avec les logins ---------------------
+function addSnow()
+{
+    require 'vue/vue_add_snow.php';
+}
+
+// --------------------- Fonction utiliateur --------------------------
 
 function login()
 {
-    if(!isset($_POST["username"]) && !isset($_POST["password"])){
-      require 'vue/vue_login.php';
-    }
-    if (isset($_POST["username"])) {
-      require 'modele/modele.php';
-      getLogin();
+    if (isset ($_POST['fLogin']) && isset ($_POST['fPass'])) {
+        $resultats = getLogin($_POST);
+        require "vue/vue_user_login.php";
+    } else {
+        // détruit la session de la personne connectée après appuyé sur Logout
+        if (isset($_SESSION['login'])) {
+            session_destroy();
+            require "vue/vue_accueil.php";
+        } else
+            require "vue/vue_user_login.php";
     }
 }

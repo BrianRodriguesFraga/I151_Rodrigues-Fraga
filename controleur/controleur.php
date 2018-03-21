@@ -38,6 +38,14 @@ function addSnow()
     require 'vue/vue_add_snow.php';
 }
 
+function delSnow()
+{
+    delSnowDB();
+    @$_POST['errormessage'] = "requête envoyé avec succès !";
+    require 'vue/vue_del_snow.php';
+}
+
+
 // --------------------- Fonction utiliateur --------------------------
 
 function login()

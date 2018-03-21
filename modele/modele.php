@@ -58,6 +58,15 @@ function addSnowDB(){
     return $resultat;
 }
 
+// ------------------------ supprimer un snow ----------------------
+
+function delSnowDB(){
+    $connexion= getBD();
+    $requete= "DELETE FROM tblsurfs WHERE idsurf = '".@$_GET['ID']."';";
+    $resultat = $connexion->query($requete);
+    return $resultat;
+}
+
 // -----------------------------------------------------
 // Fonctions liées aux utilisateurs
 

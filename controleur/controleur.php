@@ -25,8 +25,14 @@ function erreur($e)
 function snows()
 {
     if ((isset($_POST['fID']))&&(isset($_POST['fMarque']))&&(isset($_POST['fBoots']))&&(isset($_POST['fType']))&&(isset($_POST['fDispo']))){
-        addSnowDB();
-        @$_POST['errormessage'] = "requête envoyé avec succès !";
+        if (@$_GET['edit'] == 1){
+            editSnowDB();
+            @$_POST['errormessage'] = "edition envoyé avec succès !";
+        }
+        else {
+            addSnowDB();
+            @$_POST['errormessage'] = "ajout envoyé avec succès !";
+        }
     }
 
     $resultats = getSnows(); // pour récupérer les données des snows dans la BD
@@ -38,10 +44,16 @@ function addSnow()
     require 'vue/vue_add_snow.php';
 }
 
+function editASnow()
+{
+    $snow = getASnow();
+    require 'vue/vue_upd_snow.php';
+}
+
 function delSnow()
 {
     delSnowDB();
-    @$_POST['errormessage'] = "requête envoyé avec succès !";
+    @$_POST['errormessage'] = "suppression envoyé avec succès !";
     require 'vue/vue_del_snow.php';
 }
 

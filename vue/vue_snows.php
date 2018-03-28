@@ -49,10 +49,8 @@ $titre = 'Rent A Snow - Nos snows';
             <td><a href="index.php?action=vue_del_snow&ID=<?=$resultat['idsurf'];?>"><img src="contenu/images/icone-panier.jpg"></a>
             </td>
           <?php endif; ?>
-
         </tr>
       <?php endforeach;?>
-
     </table>
   </header>
 </article>

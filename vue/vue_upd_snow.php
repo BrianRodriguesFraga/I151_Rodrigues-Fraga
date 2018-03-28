@@ -21,14 +21,17 @@ if ((isset($_SESSION['login'])) && (@$_SESSION['typeUser']) == "Vendeur") : ?>
                     <h1>Edition du snow</h1>
                     <?php if (isset($_GET['erreur'])) : ?>
                         <h5 class="text-error">Erreur de mot de passe</h5>
-                    <?php endif ?>
-                    <p>
-                    <form class="form" method="POST" action="index.php?action=vue_snows">
+                    <?php endif;
+                        $snowi = $snow->fetch();
+                        $id = $snowi["idsurf"];
+                    ?>
+
+                    <form class="form" method="POST" action="index.php?action=vue_snows&edit=1&ID=<?= $id; ?>">
                         <table class="table">
                             <tr>
                                 <td>IDSurf :</td>
                                 <td><input type="text" placeholder="Entrez le code de votre surf" name="fID"
-                                           value="<?= @$_GET['fID']; ?>"></td>
+                                           value="<?= $id; ?>"></td>
                             </tr>
                             <tr>
                                 <td>Marque :</td>
@@ -38,33 +41,32 @@ if ((isset($_SESSION['login'])) && (@$_SESSION['typeUser']) == "Vendeur") : ?>
                                                name="fMarque" value="<?= @$_GET['fMarque']; ?>">
                                     <?php else : ?>
                                         <input type="text" placeholder="Entrez la marque" name="fMarque"
-                                               value="<?= @$_GET['fMarque']; ?>">
+                                               value="<?= $snowi["marque"]; ?>">
                                     <?php endif ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Boots :</td>
                                 <td><input type="text" placeholder="Entrez les boots compatibles" name="fBoots"
-                                           value="<?= @$_GET['fID']; ?>"></td>
+                                           value="<?= $snowi['boots']; ?>"></td>
                             </tr>
                             <tr>
                                 <td>Type :</td>
                                 <td><input type="text" placeholder="Entrez le type de snow" name="fType"
-                                           value="<?= @$_GET['fID']; ?>"></td>
+                                           value="<?= $snowi['type']; ?>"></td>
                             </tr>
                             <tr>
                                 <td>Disponibilité :</td>
                                 <td><input type="integer" placeholder="Entrez la disponibilité en magasin" name="fDispo"
-                                           value="<?= @$_GET['fDispo']; ?>"></td>
+                                           value="<?= $snowi["disponibilite"]; ?>"></td>
                             </tr>
-                            <hr/>
                             <tr>
                                 <td><input class="btn" type="submit" value="Editer"/></td>
                                 <td><input type="reset" class="btn" value="Effacer"/></td>
                             </tr>
                         </table>
                     </form>
-                    </p>
+
                 </div>
                 <!--End Main Content-->
             </div>
@@ -87,4 +89,3 @@ if ((isset($_SESSION['login'])) && (@$_SESSION['typeUser']) == "Vendeur") : ?>
 <?php
 $contenu = ob_get_clean();
 require "gabarit.php";
-

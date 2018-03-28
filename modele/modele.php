@@ -41,10 +41,10 @@ function getSnows()
 
 // ------------------------ Sélection d'un snow --------------------
 
-function getASnow($ID)
+function getASnow()
 {
   $connexion= getBD();
-  $requete= "SELECT * FROM tblsurfs WHERE idsurf='".$ID."';";
+  $requete= "SELECT * FROM tblsurfs WHERE idsurf='".@$_GET['ID']."';";
   $resultat = $connexion->query($requete);
   return $resultat;
 }
@@ -63,6 +63,13 @@ function addSnowDB(){
 function delSnowDB(){
     $connexion= getBD();
     $requete= "DELETE FROM tblsurfs WHERE idsurf = '".@$_GET['ID']."';";
+    $resultat = $connexion->query($requete);
+    return $resultat;
+}
+
+function editSnowDB(){  //bug, ID est vide alors qu'il devrais avoir l'id du snow en question
+    $connexion= getBD();
+    $requete= "UPDATE tblsurfs SET idsurf = '".@$_POST['fID']."',marque = '".@$_POST['fMarque']."', boots = '".@$_POST['fBoots']."', type = '".@$_POST['fType']."', disponibilite = '".@$_POST['fDispo']."' WHERE idsurf = '".@$_GET['ID']."';";
     $resultat = $connexion->query($requete);
     return $resultat;
 }

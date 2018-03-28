@@ -22,6 +22,9 @@ try {
             case 'vue_add_snow' :
                 addSnow();
                 break;
+            case 'vue_upd_snow' :
+                editASnow();
+                break;
             case 'vue_del_snow' :
                 delSnow();
                 break;

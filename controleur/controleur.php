@@ -34,6 +34,20 @@ function snows()
             @$_POST['errormessage'] = "ajout envoyé avec succès !";
         }
     }
+    if (isset($_GET['addpanier'])) {
+        if (!isset($_SESSION['panier'])) {
+            // Initialisation du panier
+            $_SESSION['panier'] = array();
+            //subdivision du panier
+            $_SESSION['panier']['idsurf'] = array();
+            $_SESSION['panier']['marque'] = array();
+            $_SESSION['panier']['boots'] = array();
+            $_SESSION['panier']['type'] = array();
+            //ajout d'un aticle
+        }else{
+            //ajout d'un aticle
+        }
+    }
 
     $resultats = getSnows(); // pour récupérer les données des snows dans la BD
     require 'vue/vue_snows.php';
@@ -73,4 +87,10 @@ function login()
         } else
             require "vue/vue_user_login.php";
     }
+}
+
+// ---------------------- Fonction lié au panier -------------------------------
+
+function panier(){
+  require 'vue/vue_panier.php';
 }

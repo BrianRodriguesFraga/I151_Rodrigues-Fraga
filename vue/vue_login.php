@@ -41,6 +41,11 @@ $titre="RentASnow - Login";
 </article>
 <hr/>
 
+
+<?php
+  $contenu=ob_get_clean();
+  require "gabarit.php";
+?>
 <script>
     window.onload = function () {
         if(!window.location.hash){
@@ -49,9 +54,3 @@ $titre="RentASnow - Login";
         }
     }
 </script>
-
-
-<?php
-  $contenu=ob_get_clean();
-  require "gabarit.php";
-?>

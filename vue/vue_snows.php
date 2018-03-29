@@ -46,7 +46,7 @@ $titre = 'Rent A Snow - Nos snows';
           </td>
           <?php endif; ?>
           <?php if ((isset($_SESSION['login']))&&(@$_SESSION['typeUser'])=="Client") : ?>
-            <td><a href="index.php?action=vue_del_snow&ID=<?=$resultat['idsurf'];?>"><img src="contenu/images/icone-panier.jpg"></a>
+            <td><a href="index.php?action=vue_snows&addpanier=1&ID=<?=$resultat['idsurf'];?>"><img src="contenu/images/icone-panier.jpg"></a>
             </td>
           <?php endif; ?>
         </tr>

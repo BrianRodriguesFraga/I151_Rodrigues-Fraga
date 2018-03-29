@@ -48,6 +48,7 @@
 
   <link href="contenu/styles/custom.css" rel="stylesheet" type="text/css" />
 </head>
+<!-- ___________________________________________________________________ -->
 <body id="pageBody">
 
 <div id="divBoxed" class="container">
@@ -89,6 +90,10 @@
                   <?php endif ?>
                 </li>
                 <li><a href="contact.php">Contact</a></li>
+                <?php if (isset($_SESSION['typeUser'])) :
+                  if ($_SESSION['typeUser'] == "Client") : ?>
+                <li><a href="index.php?action=vue_panier">Panier</a></li>
+              <?php endif; endif; ?>
               </ul>
             </div>
           </div>
